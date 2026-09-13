@@ -1,0 +1,23 @@
+# Dados extraídos e provisórios
+/data/extracted/
+/data/provisional/
+
+# Ambientes virtuais
+/.venv/
+/venv/
+
+# Variáveis de ambiente e credenciais locais
+.env
+.env.*
+!.env.example
+
+# Cache do Python
+__pycache__/
+*.py[cod]
+
+# Checkpoints do Jupyter
+.ipynb_checkpoints/
+
+# Cache de ferramentas
+.pytest_cache/
+.ruff_cache/
