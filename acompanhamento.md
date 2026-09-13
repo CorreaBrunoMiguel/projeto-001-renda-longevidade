@@ -1,27 +1,37 @@
 # Acompanhamento — Projeto 001
 
-Versão: 1.1.0
+Versão: 1.1.1
 Atualizado em: 2026-09-13
 
 ## Etapa e checkpoint
-T10 — aquisição e diagnóstico em andamento. Usuário confirmou leitura do contrato e enviou três ZIPs baixados das páginas oficiais. Recorte regional e CSV acordados após a leitura.
-C1 ainda não aprovado: apenas estrutura e amostras inspecionadas; diagnóstico de cobertura e integração permanecem com o usuário.
 
-## Referência e evidências
-Base documental consultada: main, commit 3d6674c05ce16b6b694069f232e9623e301eee7d; README 1.0.1. Revisão atual ajusta README para 1.1.0.
-Usuário forneceu anteriormente git status: main alinhada à referência local origin/main, árvore limpa. Depois relatou pasta data com JSON; estado local atual não inspecionado. Não utiliza GitHub Desktop para este fluxo; clonou pelo terminal.
-ZIPs fornecidos abertos pelo assistente: três pacotes válidos, cada um com dados e dois CSVs de metadados. Indicadores correspondem ao contrato; anos em colunas 1960–2025; atualização 2026-07-13. Sem análise de resultados ou diagnóstico integral.
-JSON local não fornecido nem revisado. Não há implementação técnica revisada ou aprovada.
+T10.1 — organização inicial das entradas: implementada pelo usuário, revisada e aprovada.
+T10 completa/C1: pendentes; diagnóstico de cobertura e qualidade ainda não implementado.
+Contrato vigente: README 1.1.0.
+
+## Revisão
+
+Commit revisado: 8475ccb4b472a34caf111804d899609120ef0d6d, branch feat/t10-aquisicao-diagnostico.
+Seis arquivos adicionados: .gitignore, .vscode/settings.json, data/README.md e três ZIPs originais.
+Inspeção estática: exclusões de extracted/provisional e caches adequadas; configuração de Markdown coerente; registro de origem, unidades, aquisição manual, limitações e autoria assistida presente.
+Os hashes Git dos três ZIPs publicados coincidem com os anexos anteriormente abertos e inspecionados. Não houve execução de pipeline ou diagnóstico integral.
+Usuário forneceu evidência de push e árvore local limpa no commit revisado. Alterações remotas posteriores exigem sincronização local.
+Sem correções bloqueantes para T10.1. Detalhe editorial opcional: settings.json não termina com quebra de linha; ajustar quando editar o arquivo, sem bloquear avanço.
+A data exata de download permanece não informada. Checksums locais não documentados; Git já identifica as versões dos ZIPs.
+Aprovação limitada à organização e preservação das entradas; não demonstra domínio de SQL/Pandas ou qualidade integral dos dados.
 
 ## Decisões
-- América do Sul como universo principal, referência global limitada e quatro casos fixos: Brasil, Argentina, Uruguai e Paraguai, países fundadores do Mercosul.
-- Manter três indicadores e 2000–2023; outras regiões fora do escopo.
-- CSVs oficiais como aquisição; APIs reservadas como foco pretendido para o Projeto 002, sem iniciar esse projeto.
-- Assistente mantém contrato/governança e conduz tasks; usuário implementa e documenta métodos/resultados.
-- Ajustes de escopo exigem acordo e registro do impacto; não são expansão automática.
 
-## Pendências e próximo passo
-1. Conferir status local atual antes de orientar sincronização, branch de trabalho e versionamento.
-2. T10: usuário organiza entradas preservadas e documenta origem/data de aquisição, conteúdo e cobertura; aproveitar metadados dos ZIPs, sem exigir JSON.
-3. Revisar critérios de elegibilidade regional/global e cobertura antes da integração.
-4. Competências só serão registradas após revisão da implementação.
+- América do Sul, referência global limitada e quatro casos fixos: Brasil, Argentina, Uruguai e Paraguai.
+- Três indicadores WDI, 2000–2023; outras regiões excluídas.
+- Aquisição CSV; APIs como foco pretendido para Projeto 002, sem iniciar esse projeto.
+- ZIPs originais versionados; nove CSVs diretamente em extracted/ e JSON provisório ignorados.
+- Assistente mantém governança e conduz tasks; usuário implementa e documenta métodos/resultados.
+- Links Markdown explícitos e quebra de linha final nos documentos.
+
+## Próxima entrega — T10.2
+
+Produzir uma inspeção inicial reproduzível dos três CSVs principais, em Python/Pandas: leitura correta; dimensões e colunas; identificação dos indicadores, períodos disponíveis e representação de ausências; distinção conceitual entre uma linha do arquivo original e uma observação país-ano.
+Entregar notebook ou script com resultados e observações próprias. Preservar entradas e não antecipar limpeza, integração SQL ou conclusões analíticas.
+Aceitação: execução em sessão limpa, leitura das três séries, evidências inspecionáveis e limitações descritas.
+Diagnóstico completo de cobertura regional/global, duplicidades, elegibilidade e correspondências permanece para os próximos passos de T10.
