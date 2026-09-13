@@ -1,39 +1,27 @@
 # Acompanhamento — Projeto 001
 
-Versão: 1.0.0
+Versão: 1.1.0
 Atualizado em: 2026-09-13
 
 ## Etapa e checkpoint
+T10 — aquisição e diagnóstico em andamento. Usuário confirmou leitura do contrato e enviou três ZIPs baixados das páginas oficiais. Recorte regional e CSV acordados após a leitura.
+C1 ainda não aprovado: apenas estrutura e amostras inspecionadas; diagnóstico de cobertura e integração permanecem com o usuário.
 
-T00 — abertura documental. Proposta aceita pelo usuário.
-README 1.0.1 publicado na main em 71137be5e72cd8859466935a043743794e7f5e20.
-C0: publicação documental realizada; leitura do contrato pelo usuário e sincronização local ainda não confirmadas.
-Nenhuma implementação técnica submetida, revisada ou aprovada.
-
-## Referência e alcance da revisão
-
-README provisório remoto consultado antes da substituição; apenas README.md existia na raiz.
-Contrato inspecionado quanto a escopo, responsabilidades, fontes, requisitos, entregáveis, dependências e critérios.
-Revisão documental; não houve execução de análise ou testes do projeto.
-Repositório: https://github.com/CorreaBrunoMiguel/projeto-001-renda-longevidade
-Branch: main. Visibilidade observada: pública.
-Estado local no GitHub Desktop não inspecionado.
+## Referência e evidências
+Base documental consultada: main, commit 3d6674c05ce16b6b694069f232e9623e301eee7d; README 1.0.1. Revisão atual ajusta README para 1.1.0.
+Usuário forneceu anteriormente git status: main alinhada à referência local origin/main, árvore limpa. Depois relatou pasta data com JSON; estado local atual não inspecionado. Não utiliza GitHub Desktop para este fluxo; clonou pelo terminal.
+ZIPs fornecidos abertos pelo assistente: três pacotes válidos, cada um com dados e dois CSVs de metadados. Indicadores correspondem ao contrato; anos em colunas 1960–2025; atualização 2026-07-13. Sem análise de resultados ou diagnóstico integral.
+JSON local não fornecido nem revisado. Não há implementação técnica revisada ou aprovada.
 
 ## Decisões
+- América do Sul como universo principal, referência global limitada e quatro casos fixos: Brasil, Argentina, Uruguai e Paraguai, países fundadores do Mercosul.
+- Manter três indicadores e 2000–2023; outras regiões fora do escopo.
+- CSVs oficiais como aquisição; APIs reservadas como foco pretendido para o Projeto 002, sem iniciar esse projeto.
+- Assistente mantém contrato/governança e conduz tasks; usuário implementa e documenta métodos/resultados.
+- Ajustes de escopo exigem acordo e registro do impacto; não são expansão automática.
 
-- Tema e escopo aceitos: renda e longevidade, 2000–2023, três indicadores WDI.
-- PostgreSQL, Python, Pandas e Matplotlib; sem ML, dashboard ou infraestrutura adicional.
-- Bootstrap documental na main do repositório recém-criado; trabalho substancial posterior em branches, com revisão.
-- Usuário mantém autoria de aquisição, implementação, análise, validação e documentação de métodos/resultados.
-- Boot em teste; regras permanentes inalteradas.
-
-## Pendências
-
-- Abertura: usuário atualizar a cópia local e ler o contrato, trazendo eventuais dúvidas.
-- Antes de versionar implementação: verificar status/diff local e preparar exclusões pertinentes no .gitignore.
-- T10 ainda não iniciada: aquisição e diagnóstico de cobertura pelo usuário, conforme README.
-- Nenhum achado técnico: implementação ainda não disponível.
-
-## Próximo passo
-
-Usuário consulta o README publicado e atualiza o repositório local pelo GitHub Desktop. Se houver alterações locais ou conflitos, informar antes de integrar. Após confirmar essa etapa e esclarecer dúvidas, conduzir T10 em uma branch apropriada ao estado efetivamente observado.
+## Pendências e próximo passo
+1. Conferir status local atual antes de orientar sincronização, branch de trabalho e versionamento.
+2. T10: usuário organiza entradas preservadas e documenta origem/data de aquisição, conteúdo e cobertura; aproveitar metadados dos ZIPs, sem exigir JSON.
+3. Revisar critérios de elegibilidade regional/global e cobertura antes da integração.
+4. Competências só serão registradas após revisão da implementação.
