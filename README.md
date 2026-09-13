@@ -1,2 +1,145 @@
-# projeto-001-renda-longevidade
-Investigação sobre PIB per capita e expectativa de vida entre países, 2000–2023, com SQL e Python.
+# Projeto 001 — Renda e longevidade
+
+Trajetórias desiguais entre países, 2000–2023.
+
+Contrato inicial: 1.0.1 · Data: 2026-09-13
+
+Status: proposta aceita; contrato inicial preparado para revisão de entendimento; repositório criado; abertura documental em andamento. Nenhuma implementação ou resultado revisado.
+
+## Cenário, público e decisão
+
+Uma equipe de pesquisa de um observatório de desenvolvimento humano precisa selecionar países e períodos para estudos posteriores. O cenário é fictício. A investigação examina como PIB per capita e expectativa de vida evoluem e se relacionam, identificando diferenças entre economias com níveis econômicos semelhantes.
+
+A entrega apoia a priorização de casos para investigação, não a recomendação de políticas nem a atribuição de causas. Não há resultado esperado a ser confirmado.
+
+## Objetivo e perguntas
+
+Produzir uma investigação descritiva, reproduzível e tecnicamente defensável sobre desenvolvimento econômico e longevidade.
+
+- P1 — Quais economias e anos possuem cobertura suficiente para comparação?
+- P2 — Como evoluíram PIB per capita, expectativa de vida e diferenças de longevidade entre países no período?
+- P3 — Economias com PIB per capita semelhante apresentam longevidade semelhante? Como a associação se modifica ao longo do período?
+- P4 — Quais trajetórias apresentam avanços, estagnação ou retrocessos, incluindo o intervalo 2019–2023?
+- P5 — Quais casos merecem estudo posterior e quais conclusões permanecem fora do alcance dos dados?
+
+## Dados, obtenção e verificação
+
+Fonte: World Development Indicators (WDI), Banco Mundial.
+
+| Série | Código | Unidade |
+| --- | --- | --- |
+| PIB per capita em paridade de poder de compra | NY.GDP.PCAP.PP.KD | Dólares internacionais constantes de 2021 |
+| Expectativa de vida ao nascer, total | SP.DYN.LE00.IN | Anos |
+| População total | SP.POP.TOTL | Pessoas; estimativa de meio de ano |
+
+Páginas oficiais:
+
+- https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD
+- https://data.worldbank.org/indicator/SP.DYN.LE00.IN
+- https://data.worldbank.org/indicator/SP.POP.TOTL
+- Metadados das economias: https://api.worldbank.org/v2/country?format=json
+- Documentação de obtenção: https://datahelpdesk.worldbank.org/knowledgebase/articles/898581-api-basic-call-structures
+- Termos: https://data.worldbank.org/summary-terms-of-use
+
+O usuário obtém as séries anuais de 2000 a 2023 e os metadados necessários pela API pública v2. A documentação acima descreve filtros, paginação e formatos. Deve registrar URLs efetivamente usadas, data de obtenção, atualização informada pela fonte e identificação dos arquivos obtidos. Deve preservar uma cópia local dos dados de entrada para reproduzir a análise mesmo após revisões da fonte.
+
+Na preparação em 2026-09-13, páginas e API responderam sem cadastro, chave ou pagamento. Foram inspecionados metadados, pequenas amostras JSON e dados brasileiros de expectativa de vida de 2019–2023. As respostas indicaram atualização em 2026-07-13 e 6.360 registros por série no recorte: 19.080 no total, incluindo agregados e possíveis ausências. Estimativa de volume: poucos megabytes; não houve download integral nem auditoria de cobertura.
+
+Campos observados: indicador, identificador e nome da economia, código de três letras, ano, valor, unidade e status da observação. O campo de unidade veio vazio nas amostras; as unidades devem ser documentadas pelos metadados. O catálogo de economias retornou 295 entradas, universo distinto do retornado pelas séries; não se deve presumir correspondência completa. Região e identificação de agregados estão disponíveis nos metadados.
+
+As três páginas declaram CC BY 4.0. Uso, adaptação e redistribuição devem atribuir crédito ao Banco Mundial e aos provedores identificados, referenciar licença e termos e indicar alterações. A licença dos dados não licencia automaticamente o código do projeto. Uma página complementar de licenças retornou 403; a licença foi confirmada nas páginas individuais e no resumo oficial. CSV em ZIP e Excel são documentados, mas seus downloads não foram testados.
+
+## Escopo e limitações
+
+Obrigatório: três indicadores anuais; visão internacional com critérios de elegibilidade; investigação das cinco perguntas; aprofundamento em até três países, selecionados com justificativa; SQL e análise Python; comunicação acessível com evidências inspecionáveis.
+
+Excluído: ML, previsão, inferência causal, dashboard, aplicação web, infraestrutura adicional, indicadores explicativos extras e estudos detalhados de políticas públicas.
+
+Cuidados analíticos:
+
+- Separar economias de agregados e declarar como territórios e mudanças de cobertura são tratados.
+- Comparar períodos equivalentes, documentar ausências e exclusões e avaliar seus efeitos. Não escolher silenciosamente o último ano disponível de cada país.
+- PIB per capita não mede distribuição de renda; PPC e preços constantes não eliminam todas as diferenças metodológicas.
+- Expectativa de vida ao nascer é uma medida baseada nos padrões de mortalidade do período, não a idade média dos falecidos nem uma previsão individual.
+- Diferenciar associação entre países de evidência sobre indivíduos ou causalidade. O intervalo da pandemia não autoriza atribuir todas as mudanças à COVID.
+- Identificar estimativas e revisões conhecidas. Não aplicar classificação econômica atual como classificação histórica.
+- Distinguir ponderação por população de peso igual por país. Uma média das expectativas nacionais não equivale automaticamente à expectativa de vida mundial.
+
+Contingência: problemas de cobertura podem justificar reduzir para 2000, 2010, 2019 e 2023 e economias comparáveis. Se necessário, negociar comparação em um ano comum e retirar perguntas temporais. Mudanças devem registrar motivo, perda de cobertura e critérios afetados antes de prosseguir. Em falha da API, testar o CSV oficial documentado. Indisponibilidade total bloqueia a aquisição; nenhuma fonte alternativa foi validada.
+
+## Requisitos e critérios de aceitação
+
+Não há aplicação com requisitos funcionais próprios. O contrato possui requisitos analíticos, técnicos e de reprodutibilidade.
+
+| ID | Classe | Requisito e evidência verificável |
+| --- | --- | --- |
+| A01 | Analítico | Responder P1 com cobertura por indicador e período, critérios de inclusão/exclusão e dimensão populacional coberta quando calculável, explicitando denominador e limitações. |
+| A02 | Analítico | Responder P2 com evolução e medida justificada das diferenças entre países, sem confundir mudanças de composição com mudanças do fenômeno. |
+| A03 | Analítico | Responder P3 com comparação econômica coerente e associação descrita, sem linguagem causal; justificar os períodos e o significado de níveis semelhantes. |
+| A04 | Analítico | Responder P4 com trajetórias e seleção justificada de até três casos, sem escolha baseada apenas em narrativa conveniente. |
+| A05 | Analítico | Responder P5 com síntese para o público, casos prioritários e limites; vincular afirmações a consultas, tabelas ou figuras identificáveis. |
+| T01 | Técnico | Usar PostgreSQL para persistência, integridade, integração e consultas analíticas com função real. Entregar SQL executável e documentar o grão e as relações dos dados. |
+| T02 | Técnico | Usar Python e Pandas para processamento/validação e Matplotlib para figuras legíveis com unidades, períodos e fontes. Evitar duplicação sem propósito entre SQL e Python. |
+| T03 | Técnico | Apresentar verificações pertinentes de chaves, duplicidades, ausências, tipos, domínios, correspondências entre fontes e cardinalidade de junções; demonstrar que erros não contaminam resultados. |
+| R01 | Reprodutibilidade | Documentar ambiente e dependências efetivamente utilizados, configuração sem segredos e sequência completa da aquisição à entrega. |
+| R02 | Reprodutibilidade | Identificar entradas e suas versões por data e checksum ou mecanismo equivalente; documentar transformações e decisões. |
+| R03 | Reprodutibilidade | Demonstrar execução completa a partir de ambiente/sessão limpa e entradas identificadas; notebooks, se utilizados, devem executar em ordem sem estado oculto. |
+| R04 | Reprodutibilidade | Manter atribuição e termos dos dados; não versionar credenciais, ambientes virtuais ou arquivos grandes sem necessidade justificada. |
+
+Validações devem abordar riscos reais; não há meta arbitrária de quantidade de testes ou gráficos. Métodos e resultados são documentados pelo usuário.
+
+## Ferramentas e ambiente
+
+- PostgreSQL: único banco exigido; persistência, integridade, integração e consultas.
+- Python 3.12 em ambiente isolado: referência recomendada para aquisição e execução reproduzível. Registrar versão e dependências efetivas.
+- Pandas: inspeção, validação e preparação analítica.
+- Matplotlib: comunicação gráfica das respostas.
+- JupyterLab: exploração e narrativa, se adotado; não substitui reprodutibilidade.
+- Git/GitHub: autoria, histórico e revisões.
+
+Linux, Core i5 e 8 GB de RAM são compatíveis com o volume estimado. Não há necessidade de MySQL adicional, Docker, Colab ou CI. Disponibilidade declarada: 2–3 horas diárias, sem prazo final imposto.
+
+## Entregáveis
+
+1. Registro de fontes, obtenção, dicionário e critérios de cobertura — A01, R02, R04.
+2. Estrutura de dados, SQL e processamento executáveis — T01, T02, R01.
+3. Evidências de validação com problemas encontrados e tratamento — T03, R03.
+4. Análise documentada, tabelas e figuras vinculadas às perguntas — A02–A04, T02.
+5. Síntese conclusiva acessível e limites — A05.
+6. Instruções de reprodução e acompanhamento curto de revisões — R01–R04.
+
+O usuário decide a organização técnica dos arquivos com justificativa proporcional. Não há obrigação de relatório acadêmico, pacote Python ou pastas vazias.
+
+## Tasks por dependência e checkpoints
+
+| Task | Depende de | O que entregar | Checkpoint |
+| --- | --- | --- | --- |
+| T00 — Abertura | Proposta aceita | Repositório próprio, contrato e acompanhamento inicial; registrar dúvidas de entendimento antes da execução. | C0: bootstrap confirmado e contrato compreendido. |
+| T10 — Aquisição e diagnóstico | T00 | Entradas identificadas, documentação de fonte/unidades e diagnóstico de cobertura; critérios propostos de elegibilidade. | C1: fonte, cobertura e viabilidade revisadas; redução negociada se necessária. |
+| T20 — Integração | T10/C1 | Dados persistidos em PostgreSQL, documentação do grão/relações, SQL e processamento de integração; evidências das validações pertinentes. | C2: integridade e integração revisadas. |
+| T30 — Investigação | T20/C2 | Respostas a P1–P4, métodos e escolhas documentados, figuras e seleção justificada dos casos. | C3: cálculos, comparabilidade e interpretação revisados. |
+| T40 — Conclusão e reprodução | T30/C3 | Resposta a P5, síntese, limitações e evidência de execução integral reproduzível. | C4: conclusão técnica avaliada. |
+| T50 — Avaliação para portfólio | T40/C4 | Apresentação final, autoria/assistência transparentes e condições de publicação verificadas. | C5: prontidão para portfólio avaliada separadamente. |
+
+As tasks especificam resultados, não a solução. Submissões podem ser pequenas dentro de cada task. Questões conceituais e bloqueios podem ser discutidos antes da submissão.
+
+## Submissão, revisão e governança Git
+
+O usuário informa repositório, branch, task/checkpoint e preferencialmente commit, resumo das alterações, como executou as verificações e dúvidas. O assistente consulta o SHA quando possível e pede somente evidência ausente necessária. Estado remoto não comprova estado local; comandos sugeridos não comprovam execução.
+
+Bootstrap documental pode ocorrer na main vazia. Depois, main estável e branches para mudanças substanciais, com integração após revisão. O assistente conduz nomes de branches, unidades de commit e integração a partir de status/diffs realmente disponíveis. Não há Git Flow, issues, PRs ou CI obrigatórios. Não reescrever histórico, descartar alterações ou forçar push sem autorização específica.
+
+Cada revisão identifica referência e alcance: inspeção estática, execução própria e/ou evidência fornecida. Achados distinguem erro conceitual, implementação, decisão insuficientemente justificada, melhoria opcional e expansão de escopo. Correções obrigatórias indicam requisito ou consequência demonstrável, evidência e condição de resolução. Não implementar a correção pelo usuário nem entregar exemplos equivalentes à solução.
+
+O acompanhamento.md é mantido pelo assistente: etapa, checkpoint, referência revisada, decisões, pendências por impacto e próximo passo. Diferenciar implementado, revisado e aprovado. Registrar pausas relevantes sem transcrever conversas.
+
+## Conclusão e autoria
+
+Conclusão técnica exige atendimento verificável aos requisitos aplicáveis e resolução dos achados que invalidem resultados. Existência de testes não comprova sucesso. Limitações de revisão devem ser declaradas.
+
+Prontidão para portfólio será avaliada depois, considerando clareza, valor demonstrado, autoria, assistência utilizada, reprodução e condições de publicação. Concluir tecnicamente não garante aprovação para portfólio nem empregabilidade.
+
+Assistente: contexto, verificação inicial das fontes, contrato, mentoria, revisão e governança. Bruno: aquisição e integração, SQL/código, análises, validações e documentação dos métodos, decisões e resultados. Competência é registrada com evidência revisada, não presumida pela experiência declarada.
+
+Há apenas um projeto técnico ativo na jornada. A jornada de desafios Python é independente. Ideias extras ficam fora da entrega obrigatória até acordo explícito. O procedimento de boot permanece em teste, sem alteração das regras permanentes.
+
