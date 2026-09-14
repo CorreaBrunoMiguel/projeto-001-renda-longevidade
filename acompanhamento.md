@@ -1,11 +1,12 @@
 # Acompanhamento — Projeto 001
 
-Versão: 1.1.1
-Atualizado em: 2026-09-13
+Versão: 1.1.2
+Atualizado em: 2026-09-14
 
 ## Etapa e checkpoint
 
 T10.1 — organização inicial das entradas: implementada pelo usuário, revisada e aprovada.
+T10.2 — inspeção inicial: implementada, revisada e aprovada em 9e00bfd07b95b6c2a7729b661e91654a07607f97.
 T10 completa/C1: pendentes; diagnóstico de cobertura e qualidade ainda não implementado.
 Contrato vigente: README 1.1.0.
 
@@ -29,9 +30,17 @@ Aprovação limitada à organização e preservação das entradas; não demonst
 - Assistente mantém governança e conduz tasks; usuário implementa e documenta métodos/resultados.
 - Links Markdown explícitos e quebra de linha final nos documentos.
 
-## Próxima entrega — T10.2
+## Revisão da T10.2
 
-Produzir uma inspeção inicial reproduzível dos três CSVs principais, em Python/Pandas: leitura correta; dimensões e colunas; identificação dos indicadores, períodos disponíveis e representação de ausências; distinção conceitual entre uma linha do arquivo original e uma observação país-ano.
-Entregar notebook ou script com resultados e observações próprias. Preservar entradas e não antecipar limpeza, integração SQL ou conclusões analíticas.
-Aceitação: execução em sessão limpa, leitura das três séries, evidências inspecionáveis e limitações descritas.
-Diagnóstico completo de cobertura regional/global, duplicidades, elegibilidade e correspondências permanece para os próximos passos de T10.
+Referência: commit 9e00bfd07b95b6c2a7729b661e91654a07607f97 na feat/t10-aquisicao-diagnostico.
+Notebook publicado: notebooks/01_inspecao_inicial.ipynb.ipynb.
+Código publicado conferido: mesmas nove células anteriormente executadas pelo assistente em processo limpo, em Python 3.12.14/Pandas 2.2.3, com os CSVs dos ZIPs fornecidos. Não houve nova execução nesta revisão remota nem reprodução exata do ambiente do usuário.
+Saídas salvas: contadores 1–9; ambiente informado Python 3.13.14/Pandas 3.0.5. Usuário confirmou reinício, execução completa e salvamento.
+Textos corrigidos: distinção entre dimensões e identidade dos registros, NaN e imputação, campo final vazio e dados anuais, linha original e país-ano.
+Contagens resumidas com reticências aceitas por acordo para inspeção inicial; detalhamento de cobertura permanece obrigatório na etapa própria. Não exigir novamente exibição integral nesta entrega.
+Sem correção técnica bloqueante. Nomenclatura a normalizar oportunamente: extensão .ipynb duplicada, sem efeito na lógica.
+Autoria: usuário implementou; recebeu auxílio pontual em isin e revisão conceitual; textos redigidos com assistência a partir da discussão. Não atribuir domínio autônomo amplo por essa entrega.
+
+## Próximo passo
+
+Sincronizar branch local após este registro. Preparar T10.3 — diagnóstico de cobertura e integridade no recorte 2000–2023, sem antecipar implementação. T10 completa/C1 ainda não encerrada.
